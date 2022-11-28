@@ -8,7 +8,7 @@ function useForm(options) {
 
   const handleChange = (fieldname, transformer) => (e) => {
     // A transformer transform the text form value to another value.
-    const value = (transformer) ? transformer(e.target.value) : e.target.value;
+    const value = transformer ? transformer(e.target.value) : e.target.value;
     setData({
       ...data,
       [fieldname]: value,
@@ -32,8 +32,7 @@ function useForm(options) {
           }
 
           const pattern = validator?.pattern;
-          if (pattern?.value && !RegExp(pattern.value)
-            .test(value)) {
+          if (pattern?.value && !RegExp(pattern.value).test(value)) {
             valid = false;
             errs[fieldname] = pattern.message;
           }

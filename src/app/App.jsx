@@ -1,6 +1,4 @@
-import {
-  BrowserRouter, Navigate, Routes, Route,
-} from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
 import ConsoleLayout from '../layouts/ConsoleLayout';

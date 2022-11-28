@@ -2,7 +2,13 @@ import { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  Button, Col, Form, FormControl, FormLabel, Row, Spinner,
+  Button,
+  Col,
+  Form,
+  FormControl,
+  FormLabel,
+  Row,
+  Spinner,
 } from 'react-bootstrap';
 
 import StatusAlert from '../components/StatusAlert';
@@ -66,9 +72,7 @@ function Login() {
   };
 
   // Using a custom hook to show how we can build out our own hook.
-  const {
-    data, handleChange, handleSubmit, errors,
-  } = useForm({
+  const { data, handleChange, handleSubmit, errors } = useForm({
     onSubmit: handleLogin,
     validators,
   });
@@ -80,57 +84,78 @@ function Login() {
       </Helmet>
       <main className="container-auth text-center">
         <Form noValidate>
-          <i className="bi bi-file-lock-fill auth-icon my-4"/>
+          <i className="bi bi-file-lock-fill auth-icon my-4" />
           <p className="mb-3 fw-normal">
             Click <strong>Log in</strong> button to log into the admin console.
             Use <strong>admin</strong>:<strong>qwerty</strong> to log in.
           </p>
           <Form.Group className="form-floating" controlId="inputUsername">
-            <FormControl type="text"
-                         className="form-control form-input-top"
-                         isInvalid={errors?.username}
-                         placeholder="Username"
-                         onChange={handleChange('username')}
+            <FormControl
+              type="text"
+              className="form-control form-input-top"
+              isInvalid={errors?.username}
+              placeholder="Username"
+              onChange={handleChange('username')}
             />
             <FormLabel>Username</FormLabel>
           </Form.Group>
           <Form.Group className="form-floating" controlId="inputPassword">
-            <FormControl type="password"
-                         className="form-control form-input-bottom"
-                         isInvalid={errors?.password}
-                         placeholder="Password"
-                         onChange={handleChange('password')}
+            <FormControl
+              type="password"
+              className="form-control form-input-bottom"
+              isInvalid={errors?.password}
+              placeholder="Password"
+              onChange={handleChange('password')}
             />
             <FormLabel>Password</FormLabel>
           </Form.Group>
           <div>
-            {Object.keys(errors).map((key) => <div className="text-danger" key={key}>{errors[key]}</div>)}
+            {Object.keys(errors).map((key) => (
+              <div className="text-danger" key={key}>
+                {errors[key]}
+              </div>
+            ))}
           </div>
           <Form.Group as={Row} className="my-3" controlId="isRemember">
             <Col sm={{ span: 8, offset: 3 }} className="text-md-start">
-              <Form.Check label="Remember me"
-                          checked={data.isRemember}
-                          onChange={handleChange('isRemember')} />
+              <Form.Check
+                label="Remember me"
+                checked={data.isRemember}
+                onChange={handleChange('isRemember')}
+              />
             </Col>
           </Form.Group>
           <div className="row mb-3">
-            <div className="col-6"><Link to="/forgot">Forgot password</Link></div>
-            <div className="col-6"><Link to="/signup">New account</Link></div>
+            <div className="col-6">
+              <Link to="/forgot">Forgot password</Link>
+            </div>
+            <div className="col-6">
+              <Link to="/signup">New account</Link>
+            </div>
           </div>
-          <Button className="w-100 btn btn-lg btn-primary"
-                  type="button"
-                  disabled={isLoading}
-                  onClick={handleSubmit}
+          <Button
+            className="w-100 btn btn-lg btn-primary"
+            type="button"
+            disabled={isLoading}
+            onClick={handleSubmit}
           >
-            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" hidden={!isLoading} />
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              hidden={!isLoading}
+            />
             <span className="px-2">Log in</span>
           </Button>
         </Form>
       </main>
-      <StatusAlert show={alertOpts.current.isShow}
-                   variant="failure"
-                   message={alertOpts.current.message}
-                   onDismiss={handleDismiss}
+      <StatusAlert
+        show={alertOpts.current.isShow}
+        variant="failure"
+        message={alertOpts.current.message}
+        onDismiss={handleDismiss}
       />
     </>
   );

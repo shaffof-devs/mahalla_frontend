@@ -1,11 +1,27 @@
 const keyUser = 'authx.user';
 const registeredUsers = new Map([
-  ['admin', {
-    id: 'uid:0', username: 'admin', email: 'admin@example.com', password: 'qwerty', firstname: 'App', lastname: 'Admin',
-  }],
-  ['lee', {
-    id: 'uid:973236115', username: 'lee', email: 'lee@acme.com', password: '12345', firstname: 'Steve', lastname: 'Lee',
-  }],
+  [
+    'admin',
+    {
+      id: 'uid:0',
+      username: 'admin',
+      email: 'admin@example.com',
+      password: 'qwerty',
+      firstname: 'App',
+      lastname: 'Admin',
+    },
+  ],
+  [
+    'lee',
+    {
+      id: 'uid:973236115',
+      username: 'lee',
+      email: 'lee@acme.com',
+      password: '12345',
+      firstname: 'Steve',
+      lastname: 'Lee',
+    },
+  ],
 ]);
 
 function newUID() {
@@ -108,5 +124,11 @@ async function getUsers() {
 // The useAuth hook is a wrapper to this service, make sure exported functions are also reflected
 // in the useAuth hook.
 export {
-  getSession, isAuth, login, logout, sendPasswordReset, addUser, getUsers,
+  getSession,
+  isAuth,
+  login,
+  logout,
+  sendPasswordReset,
+  addUser,
+  getUsers,
 };
