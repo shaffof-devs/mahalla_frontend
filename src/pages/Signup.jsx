@@ -3,7 +3,13 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {
-  Col, Button, Form, FormControl, InputGroup, FormLabel, Spinner,
+  Col,
+  Button,
+  Form,
+  FormControl,
+  InputGroup,
+  FormLabel,
+  Spinner,
 } from 'react-bootstrap';
 
 import StatusAlert from '../components/StatusAlert';
@@ -19,7 +25,9 @@ function Signup() {
   const { addUser } = useAuth();
   const navigate = useNavigate();
   const {
-    register, handleSubmit, formState: { errors },
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm();
 
   const alertOpts = useRef({ isShow: false, message: '' });
@@ -52,45 +60,50 @@ function Signup() {
       </Helmet>
       <main className="container-signup">
         <Form className="row g-2" noValidate>
-          <i className="bi bi-file-lock-fill auth-icon mt-3 text-center"/>
-          <p className="fw-normal text-center">Fill up the form and then click <strong>Sign up</strong> button to sign up.</p>
+          <i className="bi bi-file-lock-fill auth-icon mt-3 text-center" />
+          <p className="fw-normal text-center">
+            Fill up the form and then click <strong>Sign up</strong> button to
+            sign up.
+          </p>
           <Form.Group as={Col} lg="6" controlId="inputFirstName">
             <FormLabel>First Name</FormLabel>
-            <FormControl type="text"
-                         isInvalid={errors.firstname}
-                         placeholder="First Name"
-                         {...register('firstname', { required: true })}
+            <FormControl
+              type="text"
+              isInvalid={errors.firstname}
+              placeholder="First Name"
+              {...register('firstname', { required: true })}
             />
-            <Form.Control.Feedback type="invalid">First name is required</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              First name is required
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} lg="6" controlId="inputLastName">
             <FormLabel>Last Name</FormLabel>
-            <FormControl type="text"
-                         isInvalid={errors.lastname}
-                         placeholder="Last Name"
-                         {
-                           ...register('lastname', {
-                             required: true,
-                             pattern: namePattern,
-                           })
-                         }
+            <FormControl
+              type="text"
+              isInvalid={errors.lastname}
+              placeholder="Last Name"
+              {...register('lastname', {
+                required: true,
+                pattern: namePattern,
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.lastname?.type === 'required' && 'Last name is required'}
-              {errors.lastname?.type === 'pattern' && 'No special characters allowed except hyphen'}
+              {errors.lastname?.type === 'pattern' &&
+                'No special characters allowed except hyphen'}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} lg="12" controlId="inputEmail">
             <FormLabel>Email</FormLabel>
-            <FormControl type="email"
-                         isInvalid={errors.email}
-                         placeholder="Email@domain.com"
-                         {
-                           ...register('email', {
-                             required: true,
-                             pattern: emailPattern,
-                           })
-                         }
+            <FormControl
+              type="email"
+              isInvalid={errors.email}
+              placeholder="Email@domain.com"
+              {...register('email', {
+                required: true,
+                pattern: emailPattern,
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.email?.type === 'required' && 'Email is required'}
@@ -101,11 +114,12 @@ function Signup() {
             <Form.Label>Username</Form.Label>
             <InputGroup hasValidation>
               <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-              <Form.Control type="text"
-                            isInvalid={errors.username}
-                            placeholder="Username"
-                            aria-describedby="inputGroupPrepend"
-                            {...register('username', { required: true })}
+              <Form.Control
+                type="text"
+                isInvalid={errors.username}
+                placeholder="Username"
+                aria-describedby="inputGroupPrepend"
+                {...register('username', { required: true })}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.username && 'Username is required'}
@@ -114,19 +128,19 @@ function Signup() {
           </Form.Group>
           <Form.Group as={Col} lg="12" controlId="inputPassword">
             <FormLabel>Password</FormLabel>
-            <FormControl type="password"
-                         isInvalid={errors.password}
-                         placeholder="Password"
-                         {
-                           ...register('password', {
-                             required: true,
-                             minLength: 5,
-                           })
-                         }
+            <FormControl
+              type="password"
+              isInvalid={errors.password}
+              placeholder="Password"
+              {...register('password', {
+                required: true,
+                minLength: 5,
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.password?.type === 'required' && 'Password is required'}
-              {errors.password?.type === 'pattern' && 'Password must be at least 5 characters long'}
+              {errors.password?.type === 'pattern' &&
+                'Password must be at least 5 characters long'}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="my-3">
@@ -138,20 +152,29 @@ function Signup() {
               {...register('agree', { required: true })}
             />
           </Form.Group>
-          <Button className="w-100 btn btn-lg btn-primary"
-                  type="button"
-                  disabled={isLoading}
-                  onClick={handleSubmit(handleSignup)}
+          <Button
+            className="w-100 btn btn-lg btn-primary"
+            type="button"
+            disabled={isLoading}
+            onClick={handleSubmit(handleSignup)}
           >
-            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" hidden={!isLoading} />
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              hidden={!isLoading}
+            />
             <span className="px-2">Sign up</span>
           </Button>
         </Form>
       </main>
-      <StatusAlert show={alertOpts.current.isShow}
-                   variant="failure"
-                   message={alertOpts.current.message}
-                   onDismiss={handleDismiss}
+      <StatusAlert
+        show={alertOpts.current.isShow}
+        variant="failure"
+        message={alertOpts.current.message}
+        onDismiss={handleDismiss}
       />
     </>
   );

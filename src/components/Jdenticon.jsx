@@ -11,7 +11,12 @@ function Jdenticon({ name, width = '32px', height = '32px' }) {
 
   return (
     <>
-      <svg data-jdenticon-value={name} ref={icon} height={height} width={width} />
+      <svg
+        data-jdenticon-value={name}
+        ref={icon}
+        height={height}
+        width={width}
+      />
     </>
   );
 }
